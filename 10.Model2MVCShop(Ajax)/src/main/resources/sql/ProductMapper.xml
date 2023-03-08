@@ -35,6 +35,11 @@
 		WHERE price LIKE '%${searchKeyword}%'
 	</select>
 	
+	<select id="getFileName" parameterType="Product" resultType="string">
+		SELECT image_file FROM product
+		WHERE prod_name = #{prodName}
+	</select>
+	
 	
 	<!-- SQL : INSERT -->
 	<insert 	id="addProduct"		parameterType="product" >

@@ -75,6 +75,23 @@ public class ProductRestController {
 		return list;
 	}
 	
+	@RequestMapping( value="json/getFileName/{prodName}", method=RequestMethod.GET )
+	public Product getFileName(@PathVariable String prodName) throws Exception{
+		System.out.println("prodName 넘어온거는 ??? "+prodName);
+		System.out.println("/product/json/getFileName : GET");
+		
+		Product product = new Product();
+		product.setProdName(prodName);
+		//Business Logic
+		
+		
+	
+		product.setFileName(productService.getFileName(product));
+		
+		
+		return product;
+	}
+	
 	
 	@RequestMapping( value="json/getProduct/{prodNo}", method=RequestMethod.GET )
 	public Product getProduct(@PathVariable int prodNo) throws Exception{

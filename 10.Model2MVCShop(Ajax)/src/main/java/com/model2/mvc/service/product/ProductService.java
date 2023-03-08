@@ -29,7 +29,8 @@ public interface ProductService {
 	public List<String> getAll1(Search searchKeyword) throws Exception;
 
 	public List<String> getAll2(Search searchKeyword) throws Exception;
-
+	
+	public String getFileName(Product prodName) throws Exception;
 	
 }
 /*

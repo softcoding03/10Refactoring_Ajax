@@ -96,7 +96,8 @@ public class ProductController {
         }*/
 		System.out.println("product는 ?????:  "+product);
 		String path = 
-		"C:\\Users\\user\\git\\09Refactoring_jQuery\\09.Model2MVCShop(jQuery)\\src\\main\\webapp\\images\\uploadFiles";
+		"C:\\Users\\user\\git\\10.Refactoring,Ajax\\10.Model2MVCShop(Ajax)\\src\\main\\webapp\\images\\uploadFiles";
+		
 				System.out.println("uploadFile넘어오는거 뭔가요 ? :" + uploadFile);
 		
 		for(MultipartFile file : uploadFile){
@@ -220,7 +221,7 @@ public class ProductController {
 		System.out.println("/product/updateProduct : POST");
 		//Business Logic
 		String path = 
-				"C:\\Users\\user\\git\\09Refactoring_jQuery\\09.Model2MVCShop(jQuery)\\src\\main\\webapp\\images\\uploadFiles";
+				"C:\\Users\\user\\git\\10.Refactoring,Ajax\\10.Model2MVCShop(Ajax)\\src\\main\\webapp\\images\\uploadFiles";
 						System.out.println("uploadFile넘어오는거 뭔가요 ? :" + uploadFile);
 				
 				for(MultipartFile file : uploadFile){

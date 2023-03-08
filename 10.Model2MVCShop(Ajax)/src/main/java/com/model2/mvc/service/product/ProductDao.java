@@ -34,6 +34,8 @@ import com.model2.mvc.service.domain.*;
 		public List<String> getAll0(Search searchKeyword) throws Exception;
 		public List<String> getAll1(Search searchKeyword) throws Exception;
 		public List<String> getAll2(Search searchKeyword) throws Exception;
+		
+		public String getFileName(Product prodName) throws Exception;
 	}
 
 

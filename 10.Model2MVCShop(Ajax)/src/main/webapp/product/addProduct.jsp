@@ -11,7 +11,8 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script type="text/javascript">
 		
 		
@@ -30,6 +31,40 @@
 					self.location = "/product/addProduct"
 				});
 			 
+			 $('#button').on("click" , function() {
+					//Debug..
+					alert($('#prodName').val().trim());
+					
+					var prodName = $('#prodName').val().trim();
+					
+					$.ajax({
+						
+						url:"/product/json/getFileName/"+prodName,
+						method: "GET",
+						dataType : "json",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						
+						success : function(JSONData, status) {
+							
+							alert(JSONData);
+							console.info(status);
+							console.info(JSONData);
+							
+							var displayImage ="<br>" 
+						 					+"<img src=\"/images/uploadFiles/"
+											+JSONData.fileName+"\"/>";
+													
+							console.log(displayImage);
+
+							$('#place').append(displayImage);
+						}
+
+					});
+
+			});
 			 
 		});
 		
@@ -115,8 +150,12 @@
 	<tr>
 		<td width="104" class="ct_write">상품이미지</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<img src="/images/uploadFiles/${product.fileName}"/>
+		<td class="ct_write01" id= "place">
+<%-- 			<img src="/images/uploadFiles/${product.fileName}"/> --%>
+				상품 이미지를 보려면 클릭해주세요.
+<!-- 			<img src="/images/uploadFiles/8780cf82-fb81-40a7-bce0-4b2291c7f169_apple.jpg"/> -->
+			<input id="button" type="button" value="이미지 보기"/>
+			<input type="hidden" id="prodName" value="${product.prodName}"/>
 		</td>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>

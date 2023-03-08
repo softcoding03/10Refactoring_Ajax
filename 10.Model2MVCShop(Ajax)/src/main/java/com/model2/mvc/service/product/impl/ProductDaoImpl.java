@@ -65,6 +65,12 @@ public class ProductDaoImpl implements ProductDao{
 	public List<String> getAll2(Search searchKeyword) throws Exception{
 		return sqlSession.selectList("ProductMapper.getAll2",searchKeyword);
 	}
+
+	public String getFileName(Product prodName) throws Exception {
+		return sqlSession.selectOne("ProductMapper.getFileName", prodName);
+	}
+	
+	
 }
 /*
 public class ProductDaoImpl {

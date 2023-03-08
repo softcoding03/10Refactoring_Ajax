@@ -74,4 +74,10 @@ public class ProductServiceImpl implements ProductService{
 		List<String> list = productDao.getAll2(searchKeyword);
 		return list;
 	}
+	
+	public String getFileName(Product prodName) throws Exception{
+		String fileName = productDao.getFileName(prodName);
+		return fileName;
+	}
+
 }
