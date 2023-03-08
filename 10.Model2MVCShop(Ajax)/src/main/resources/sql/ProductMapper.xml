@@ -19,6 +19,23 @@
 		
 	</resultMap>
 	
+	
+	<select id="getAll0" parameterType="Search" resultType="string">
+		SELECT prod_no FROM product
+		WHERE prod_no LIKE '%${searchKeyword}%'
+	</select>
+	
+	<select id="getAll1" parameterType="Search" resultType="string">
+		SELECT prod_name FROM product
+		WHERE prod_name LIKE '%${searchKeyword}%'
+	</select>
+	
+	<select id="getAll2" parameterType="Search" resultType="string">
+		SELECT price FROM product
+		WHERE price LIKE '%${searchKeyword}%'
+	</select>
+	
+	
 	<!-- SQL : INSERT -->
 	<insert 	id="addProduct"		parameterType="product" >
 	 	INSERT

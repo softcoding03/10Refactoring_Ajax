@@ -7,7 +7,6 @@
 	<title>상품 관리</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
- 		<link rel="stylesheet" href="/resources/demos/style.css">
 		<link rel="stylesheet" href="/css/admin.css" type="text/css">
 	
 	
@@ -22,7 +21,7 @@
 		   * we use height instead, but this forces the menu to always be this tall
 		   */
 		  * html .ui-autocomplete {
-		    height: 100px;
+		    height: 50px;
 		  }
 		</style>
 	
@@ -51,6 +50,8 @@
 			
 			$( ".ct_list_pop td:nth-child(3)" ).on("click" ,function() {
 					//Debug..
+							
+
 					alert($(this).find("input").val().trim());
 // 					self.location ="/product/getProduct?prodNo="+$(this).find("input").val().trim();
 					
@@ -88,38 +89,32 @@
 			
 							
 		    $( "#searchKeyword" ).autocomplete({
-		      source: availableTags
+		      source: function(request, response) {
+		    	  
+		    	  var searchCondition = $('option:selected').val();
+		    	  var searchKeyword = $('#searchKeyword').val();
+
+		    	  console.log($('option:selected').val());
+		    	  console.log($('#searchKeyword').val());
+		    	  
+		    	  $.ajax(
+						{
+							url:"/product/json/getAll/"+searchCondition+"/"+searchKeyword ,
+							method : "GET",
+							dataType : "json",
+							headers : {
+								"Accept" : "application/json",
+								"Content-Type" : "application/json"
+							},
+							success : function(JSONData, status) {
+								console.log(JSONData);
+								response(JSONData);				
+							}
+				   });
+		    	}
 		    });
 			
-			var availableTags =
-				
-				$.ajax(
-					{
-						url:"/product/json/getProduct/"+prodNo ,
-						method : "GET",
-						dataType : "json",
-						headers : {
-							"Accept" : "application/json",
-							"Content-Type" : "application/json"
-						},
-						success : function(JSONData, status) {
-							
-							var displayValue = "<h3>" 
-													+"상품명 : "+JSONData.prodName+"<br/>"
-													+"상품이미지 : "+JSONData.fileName+"<br/>"
-													+"상품상세정보 : "+JSONData.prodDetail+"<br/>"
-													+"제조일자 : "+JSONData.manuDate+"<br/>"
-													+"가격 : "+JSONData.price+"<br/>"
-													+"등록일자 : "+JSONData.regDate+"<br/>"
-													+"</h3>";
-							$("h3").remove();
-							$( "#"+prodNo+"" ).html(displayValue);
-						}
-					});
 
-				
-			
-			
 			
 		});		
 		

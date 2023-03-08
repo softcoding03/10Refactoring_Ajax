@@ -55,6 +55,16 @@ public class ProductDaoImpl implements ProductDao{
 	public int getTotalCount(Search search) throws Exception {
 		return sqlSession.selectOne("ProductMapper.getTotalCount", search);
 	}
+	
+	public List<String> getAll0(Search searchKeyword) throws Exception{
+		return sqlSession.selectList("ProductMapper.getAll0",searchKeyword);
+	}
+	public List<String> getAll1(Search searchKeyword) throws Exception{
+		return sqlSession.selectList("ProductMapper.getAll1",searchKeyword);
+	}
+	public List<String> getAll2(Search searchKeyword) throws Exception{
+		return sqlSession.selectList("ProductMapper.getAll2",searchKeyword);
+	}
 }
 /*
 public class ProductDaoImpl {

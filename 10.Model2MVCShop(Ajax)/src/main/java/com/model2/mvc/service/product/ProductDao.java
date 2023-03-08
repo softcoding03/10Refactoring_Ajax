@@ -31,6 +31,9 @@ import com.model2.mvc.service.domain.*;
 		// 게시판 Page 처리를 위한 전체Row(totalCount)  return
 		public int getTotalCount(Search search) throws Exception ;
 		
+		public List<String> getAll0(Search searchKeyword) throws Exception;
+		public List<String> getAll1(Search searchKeyword) throws Exception;
+		public List<String> getAll2(Search searchKeyword) throws Exception;
 	}
 
 

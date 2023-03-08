@@ -58,4 +58,20 @@ public class ProductServiceImpl implements ProductService{
 	public void updateProduct(Product product) throws Exception {
 		productDao.updateProduct(product);
 	}
+
+
+	public List<String> getAll0(Search searchKeyword) throws Exception {
+		List<String> list = productDao.getAll0(searchKeyword);
+		return list;
+	}
+
+	public List<String> getAll1(Search searchKeyword) throws Exception {
+		List<String> list = productDao.getAll1(searchKeyword);
+		return list;
+	}
+
+	public List<String> getAll2(Search searchKeyword) throws Exception {
+		List<String> list = productDao.getAll2(searchKeyword);
+		return list;
+	}
 }

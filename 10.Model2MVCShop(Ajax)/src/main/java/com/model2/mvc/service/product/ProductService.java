@@ -2,6 +2,7 @@ package com.model2.mvc.service.product;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.model2.mvc.common.Search;
@@ -23,6 +24,11 @@ public interface ProductService {
 	// 상품정보 수정
 	public void updateProduct(Product product) throws Exception ;
 	
+	public List<String> getAll0(Search searchKeyword) throws Exception;
+	
+	public List<String> getAll1(Search searchKeyword) throws Exception;
+
+	public List<String> getAll2(Search searchKeyword) throws Exception;
 
 	
 }

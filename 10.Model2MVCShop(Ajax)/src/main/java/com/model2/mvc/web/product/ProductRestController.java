@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -43,6 +44,37 @@ public class ProductRestController {
 	public ProductRestController(){
 		System.out.println(this.getClass());
 	}
+	
+
+	@RequestMapping( value="json/getAll/{searchCondition}/{searchKeyword1}", method=RequestMethod.GET )
+	public List<String> getAll(@PathVariable String searchCondition,
+								@PathVariable String searchKeyword1) throws Exception{
+		System.out.println("searchCondition 넘어온거는 ??? "+searchCondition);
+		System.out.println("searchKeyword 넘어온거는 ??? "+searchKeyword1);
+		
+		Search searchKeyword = new Search();
+		searchKeyword.setSearchKeyword(searchKeyword1);
+		
+		List<String> list =null;
+		
+		if (searchCondition.equals("0")) {
+			System.out.println("/product/json/getAll0 : GET");
+				list =productService.getAll0(searchKeyword);
+				
+		} else if (searchCondition.equals("1")) {
+			System.out.println("/product/json/getAll1 : GET");
+				list =productService.getAll1(searchKeyword);
+					
+		} else if (searchCondition.equals("2")) {
+//		} else {
+			System.out.println("/product/json/getAll2 : GET");
+				list =productService.getAll2(searchKeyword);
+		}
+		System.out.println("list는 무엇으로 구성? -> " + list );
+		//Business Logic
+		return list;
+	}
+	
 	
 	@RequestMapping( value="json/getProduct/{prodNo}", method=RequestMethod.GET )
 	public Product getProduct(@PathVariable int prodNo) throws Exception{

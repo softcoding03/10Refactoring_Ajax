@@ -6,9 +6,29 @@
 	<html>
 	<head>
 	<title>상품 목록조회</title>
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/css/admin.css" type="text/css">
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	
+	<style>
+		  .ui-autocomplete {
+		    max-height: 100px;
+		    overflow-y: auto;
+		    /* prevent horizontal scrollbar */
+		    overflow-x: hidden;
+		  }
+		  /* IE 6 doesn't support max-height
+		   * we use height instead, but this forces the menu to always be this tall
+		   */
+		  * html .ui-autocomplete {
+		    height: 50px;
+		  }
+	</style>
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script type="text/javascript">
 	
 		function fncGetProductList(currentPage){
@@ -37,6 +57,39 @@
 			$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
 			$("h7").css("color" , "red");
 			$(".ct_list_pop:nth-child(4n+6)" ).css("background-color" , "whitesmoke");
+		
+			
+			
+			
+			$( "#searchKeyword" ).autocomplete({
+			      source: function(request, response) {
+			    	  
+			    	  var searchCondition = $('option:selected').val();
+			    	  var searchKeyword = $('#searchKeyword').val();
+
+			    	  console.log($('option:selected').val());
+			    	  console.log($('#searchKeyword').val());
+			    	  
+			    	  $.ajax(
+							{
+								url:"/product/json/getAll/"+searchCondition+"/"+searchKeyword ,
+								method : "GET",
+								dataType : "json",
+								headers : {
+									"Accept" : "application/json",
+									"Content-Type" : "application/json"
+								},
+								success : function(JSONData, status) {
+									console.log(JSONData);
+									response(JSONData);				
+								}
+					   });
+			    	}
+			    });
+		
+		
+		
+		
 		});	
 		
 		
@@ -80,7 +133,7 @@
 					<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>상품명</option>
 					<option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>상품가격</option>	
 				</select>
-				<input type="text" name="searchKeyword" value="${! empty search.searchKeyword ? search.searchKeyword : ""}"   class="ct_input_g" style="width:200px; height:19px" />
+				<input type="text" id="searchKeyword" name="searchKeyword" value="${! empty search.searchKeyword ? search.searchKeyword : ""}"   class="ct_input_g" style="width:200px; height:19px" />
 			</td>
 			
 			<td align="right" width="70">
